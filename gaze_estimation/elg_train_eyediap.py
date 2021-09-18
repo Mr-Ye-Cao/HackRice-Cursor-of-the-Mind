@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Main script for training a model for gaze estimation."""
 import argparse
 
 import coloredlogs
@@ -186,26 +185,12 @@ if __name__ == '__main__':
             # Note: The same session must be used for the model and the data sources.
             session,
 
-            # Model configuration parameters
-            # first_layer_stride describes how much the input image is downsampled before producing
-            #                    feature maps for eventual heatmaps regression
-            # num_modules defines the number of hourglass modules, and thus the number of times repeated
-            #             coarse-to-fine refinement is done.
-            # num_feature_maps describes how many feature maps are refined over the entire network.
+
             first_layer_stride=elg_first_layer_stride,
             num_feature_maps=elg_num_feature_maps,
             num_modules=elg_num_modules,
 
-            # The learning schedule describes in which order which part of the network should be
-            # trained and with which learning rate.
-            #
-            # A standard network would have one entry (dict) in this argument where all model
-            # parameters are optimized. To do this, you must specify which variables must be
-            # optimized and this is done by specifying which prefixes to look for.
-            # The prefixes are defined by using `tf.variable_scope`.
-            #
-            # The loss terms which can be specified depends on model specifications, specifically
-            # the `loss_terms` output of `BaseModel::build_model`.
+            
             learning_schedule=[
                 {
                     'loss_terms_to_optimize': {
