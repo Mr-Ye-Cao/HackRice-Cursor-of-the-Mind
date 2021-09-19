@@ -114,8 +114,6 @@ class BaseDataSource(object):
     @property
     def num_entries(self):
         """Number of entries in this data source.
-
-        Used to calculate number of steps to train when asked to be trained for # epochs.
         """
         raise NotImplementedError('BaseDataSource::num_entries not specified.')
 
@@ -213,9 +211,7 @@ class BaseDataSource(object):
 
     def preprocess_entry(self, entry):
         """Preprocess a "raw" data entry and yield a dict.
-
-        Each element of an entry is provided to this method as separate arguments.
-        This method should be thread-safe so make sure to use threading.Lock where necessary.
+        
         """
         raise NotImplementedError('BaseDataSource::preprocess_entry not implemented.')
 
